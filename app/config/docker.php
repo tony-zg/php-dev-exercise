@@ -8,6 +8,11 @@ use function Cake\Core\env;
 return [
     'debug' => filter_var(env('DEBUG', 'true'), FILTER_VALIDATE_BOOLEAN),
     'Security' => ['salt' => env('SECURITY_SALT')],
+    'Dinggo' => [
+        'baseUrl' => env('DINGGO_API_BASE_URL', 'https://app.dev.aws.dinggo.com.au/phptest'),
+        'username' => env('DINGGO_USERNAME', ''),
+        'key' => env('DINGGO_KEY', ''),
+    ],
     'Datasources' => [
         'default' => [
             'driver' => Mysql::class,

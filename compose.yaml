@@ -14,6 +14,9 @@ services:
       DB_DATABASE: ${MYSQL_DATABASE:-cakephp}
       DB_USERNAME: ${MYSQL_USER:-cakephp}
       DB_PASSWORD: ${MYSQL_PASSWORD:?Run scripts/setup.sh first}
+      DINGGO_API_BASE_URL: ${DINGGO_API_BASE_URL:-https://app.dev.aws.dinggo.com.au/phptest}
+      DINGGO_USERNAME: ${DINGGO_USERNAME:-}
+      DINGGO_KEY: ${DINGGO_KEY:-}
     volumes:
       - ./app:/var/www/html
     depends_on:

@@ -12,6 +12,12 @@ Install Docker Desktop (running, Linux containers) or Docker Engine with Docker 
 
 The script creates `.env` only if absent, generates random credentials, uses your host UID/GID, builds PHP, installs the committed Composer lock file, prepares writable directories and waits for services. Existing configuration and database data are preserved. Commit `app/composer.lock` alongside the source.
 
+## Dinggo API configuration
+
+Add `DINGGO_USERNAME` and `DINGGO_KEY` from your supplied credentials to the root `.env` file. Set `DINGGO_API_BASE_URL=https://app.dev.aws.dinggo.com.au/phptest`. See `.env.example` for placeholders; never commit real credentials.
+
+Run `docker compose up -d` after changing these values so Compose passes them into the app container. Application code can read `Configure::read('Dinggo.baseUrl')`, `Configure::read('Dinggo.username')` and `Configure::read('Dinggo.key')` through `Cake\Core\Configure`. Do not display or log the credentials. This configures access only; importing cars and quotes is implemented separately.
+
 ## Daily commands
 
 ```sh
