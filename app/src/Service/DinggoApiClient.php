@@ -18,22 +18,35 @@ class DinggoApiClient
 
     public function fetchCars(): array
     {
+        return $this->request('cars');
+    }
+
+    public function fetchQuotes(string $licensePlate, string $licenseState): array
+    {
+        return $this->request('quotes', [
+            'license_plate' => $licensePlate,
+            'license_state' => $licenseState,
+        ]);
+    }
+
+    private function request(string $endpoint, array $fields = []): array
+    {
         $baseUrl = Configure::read('Dinggo.baseUrl');
         $username = Configure::read('Dinggo.username');
         $key = Configure::read('Dinggo.key');
 
         foreach ([$baseUrl, $username, $key] as $setting) {
             if (!is_string($setting) || trim($setting) === '') {
-                throw new RuntimeException('Set the Dinggo API URL, username and key before fetching cars.');
+                throw new RuntimeException('Set the Dinggo API URL, username and key before making a request.');
             }
         }
 
         try {
             // Passing an array sends the credentials as form fields in the POST body.
-            $response = $this->http->post(rtrim($baseUrl, '/') . '/cars', [
+            $response = $this->http->post(rtrim($baseUrl, '/') . '/' . $endpoint, [
                 'username' => $username,
                 'key' => $key,
-            ], [
+            ] + $fields, [
                 'timeout' => 15,
                 'redirect' => false,
             ]);
@@ -42,7 +55,7 @@ class DinggoApiClient
         }
 
         if (!$response->isOk()) {
-            throw new RuntimeException('Dinggo cars request failed (HTTP ' . $response->getStatusCode() . ').');
+            throw new RuntimeException('Dinggo ' . $endpoint . ' request failed (HTTP ' . $response->getStatusCode() . ').');
         }
 
         $data = $response->getJson();
@@ -51,13 +64,13 @@ class DinggoApiClient
         }
 
         if (($data['success'] ?? null) !== 'ok') {
-            throw new RuntimeException('Dinggo did not report a successful cars request.');
+            throw new RuntimeException('Dinggo did not report a successful ' . $endpoint . ' request.');
         }
 
-        if (!isset($data['cars']) || !is_array($data['cars']) || !array_is_list($data['cars'])) {
-            throw new RuntimeException('Dinggo returned an invalid cars list.');
+        if (!isset($data[$endpoint]) || !is_array($data[$endpoint]) || !array_is_list($data[$endpoint])) {
+            throw new RuntimeException('Dinggo returned an invalid ' . $endpoint . ' list.');
         }
 
-        return $data['cars'];
+        return $data[$endpoint];
     }
 }
