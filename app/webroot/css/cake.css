@@ -1,7 +1,7 @@
 /* Milligram overrides */
 :root {
     /* The following are official CakePHP colors */
-    --color-cakephp-red: #d33c43;
+    --color-cakephp-orange: #f59600;
     --color-cakephp-gray: #404041;
     --color-cakephp-blue: #2f85ae;
     --color-cakephp-lightblue: #34bdd7;
@@ -13,7 +13,7 @@
     --color-main-bg: #f5f7fa;
     --color-links: var(--color-cakephp-blue);
     --color-links-active: #2a6496;
-    --color-headings: #363637;
+    --color-headings: #67696e;
 
     --color-message-success-bg: #e3fcec;
     --color-message-success-text: #1f9d55;
@@ -32,7 +32,11 @@
     --color-message-info-border: #6cb2eb;
 }
 
-.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
     background-color: var(--color-cakephp-red);
     border-color: var(--color-cakephp-red);
 }
@@ -45,11 +49,21 @@ body {
 
 .top-nav-links,
 .side-nav,
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Raleway", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 400;
     color: var(--color-headings);
 }
@@ -94,7 +108,8 @@ th a,
     background: var(--color-white);
     border-radius: 0.4rem;
     /* Thanks Stripe */
-    box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
+    box-shadow:
+        0 7px 14px 0 rgba(60, 66, 87, 0.1),
         0 3px 6px 0 rgba(0, 0, 0, 0.07);
 }
 .content form {
@@ -122,10 +137,10 @@ th {
 }
 .top-nav-title a {
     font-size: 2.4rem;
-    color: var(--color-cakephp-red);
+    color: var(--color-cakephp-orange);
 }
 .top-nav-title span {
-    color: var(--color-cakephp-gray);
+    color: var(--color-headings);
 }
 .top-nav-links a {
     margin: 0 0.5rem;
@@ -149,7 +164,7 @@ th {
 
 /* Flash messages */
 .message {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     background: var(--color-message-info-bg);
     color: var(--color-message-info-text);
     border-color: var(--color-message-info-border);
@@ -187,22 +202,22 @@ th {
 .input textarea {
     margin-bottom: 0;
 }
-.input label:has(input[type='checkbox']),
-.input label:has(input[type='radio']) {
+.input label:has(input[type="checkbox"]),
+.input label:has(input[type="radio"]) {
     display: flex;
     align-items: center;
 }
 .input label:has(~ label),
-.input label:has(input[type='radio']) {
+.input label:has(input[type="radio"]) {
     margin-bottom: 0;
 }
-.input label > input[type='checkbox'],
-.input label > input[type='radio'] {
-    margin-right: 1.0rem;
+.input label > input[type="checkbox"],
+.input label > input[type="radio"] {
+    margin-right: 1rem;
 }
-input[type='color'] {
+input[type="color"] {
     max-width: 4rem;
-    padding: 0.3rem .5rem 0.3rem;
+    padding: 0.3rem 0.5rem 0.3rem;
 }
 .error-message {
     color: var(--color-message-error-text);
@@ -236,7 +251,9 @@ input[type='color'] {
     padding: 0;
     position: relative;
     text-decoration: none;
-    transition: background .3s,color .3s;
+    transition:
+        background 0.3s,
+        color 0.3s;
 }
 .pagination li.active a,
 .pagination a:hover {
@@ -251,7 +268,7 @@ input[type='color'] {
 .prev a,
 .next a,
 .last a {
-    padding: 0 .75rem;
+    padding: 0 0.75rem;
 }
 .disabled a:hover {
     background: initial;
@@ -275,9 +292,9 @@ input[type='color'] {
 
 @media screen and (max-width: 640px) {
     /* Fix milligram not having a responsive column system */
-    .row .column[class*='column-'] {
+    .row .column[class*="column-"] {
         flex: 0 0 100%;
-        max-width: 100%
+        max-width: 100%;
     }
     .top-nav {
         margin: 0 auto;
