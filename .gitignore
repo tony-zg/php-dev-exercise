@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+/app/vendor/
+/app/config/app_local.php
+/app/config/.env
+/app/tmp/*
+/app/logs/*
+!/app/tmp/.gitkeep
+!/app/logs/.gitkeep
+.DS_Store
