@@ -17,6 +17,10 @@ class CarsTable extends Table
         $this->setDisplayField('license_plate');
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Quotes', [
+            'foreignKey' => 'car_id',
+        ]);
     }
 
     public function validationDefault(Validator $validator): Validator
