@@ -14,4 +14,11 @@ class CarsController extends AppController
 
         $this->set(compact('cars'));
     }
+
+    public function view(string $id): void
+    {
+        $car = $this->fetchTable('Cars')->get($id, contain: ['Quotes']);
+
+        $this->set(compact('car'));
+    }
 }

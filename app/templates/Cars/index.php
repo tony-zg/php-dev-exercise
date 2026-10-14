@@ -19,6 +19,7 @@ $this->assign('title', 'Cars');
                         <th scope="col">Year</th>
                         <th scope="col">Colour</th>
                         <th scope="col">VIN</th>
+                        <th scope="col">Quotes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@ $this->assign('title', 'Cars');
                             <td><?= h($car->year) ?></td>
                             <td><?= h($car->colour) ?></td>
                             <td><?= h($car->vin) ?></td>
+                            <td><?= $this->Html->link('View quotes', ['action' => 'view', $car->id]) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
